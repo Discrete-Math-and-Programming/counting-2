@@ -8,8 +8,6 @@
 
 def test():
 
-    # Test for powerset_rec
-
     results = {}
     test_cases =\
             {'powerset_rec': [
