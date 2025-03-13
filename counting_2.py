@@ -13,19 +13,25 @@ def test():
     results = {}
     test_cases =\
             {'powerset_rec': [
-                ([[]],[]),
-                ([[1,2,3]],[[], [1], [2], [3], [1, 2], [1, 3], [2, 3],
-                                     [1, 2, 3]])],
+                {'args': [[]],
+                 'expected': [],
+                 'key': lambda x: set(x)},
+                {'args': [[1,2,3]],
+                 'expected': {[], [1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3]},
+                 'key': lambda x: set(x)}],
              'powerset_iter': [
-                ([[]],[]),
-                ([[1,2,3]],[[], [1], [2], [3], [1, 2], [1, 3], [2, 3],
-                                     [1, 2, 3]])]
+                {'args': [[]],
+                 'expected': [],
+                 'key': lambda x: set(x)},
+                {'args': [[1,2,3]],
+                 'expected': {[], [1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3]},
+                 'key': lambda x: set(x)}]
             } 
 
 
     for funcname, cases  in test_cases.items():
         try:
-            results[funcname] =  "OK" if all([eval(funcname)(*case[0]) == case[1] for case in cases]) else "Not OK"
+            results[funcname] =  "OK" if all([case['key'](eval(funcname)(*case['args'])) == case['expected'] for case in cases]) else "Not OK"
         except NameError:
             results[funcname] = "Not Implemented"
         except Exception as e:
