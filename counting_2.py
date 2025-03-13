@@ -5,25 +5,24 @@
 # iteration powerset_iter.
 
 
-
 def test():
 
     results = {}
     test_cases =\
             {'powerset_rec': [
                 {'args': [[]],
-                 'expected': [],
-                 'key': lambda x: set(x)},
+                 'expected': [[]],
+                 'key': lambda x: sorted(x)},
                 {'args': [[1,2,3]],
-                 'expected': {[], [1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3]},
-                 'key': lambda x: set(x)}],
+                 'expected': sorted([[], [1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3]]),
+                 'key': lambda x: sorted(x)}],
              'powerset_iter': [
                 {'args': [[]],
-                 'expected': [],
-                 'key': lambda x: set(x)},
+                 'expected': [[]],
+                 'key': lambda x: sorted(x)},
                 {'args': [[1,2,3]],
-                 'expected': {[], [1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3]},
-                 'key': lambda x: set(x)}]
+                 'expected': sorted([[], [1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3]]),
+                 'key': lambda x: sorted(x)}]
             } 
 
 
@@ -39,4 +38,3 @@ def test():
     print("-------------------------|--------")
     for key, value in results.items():
         print(f"{key:<24} | {value}")
-
